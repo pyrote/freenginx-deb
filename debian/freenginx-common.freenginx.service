@@ -1,0 +1,31 @@
+# Stop dance for freenginx
+# =======================
+#
+# ExecStop sends SIGQUIT (graceful stop) to the freenginx process.
+# If, after 5s (--retry QUIT/5) nginx is still running, systemd takes control
+# and sends SIGTERM (fast shutdown) to the main process.
+# After another 5s (TimeoutStopSec=5), and if freenginx is alive, systemd sends
+# SIGKILL to all the remaining processes in the process group (KillMode=mixed).
+#
+# freenginx signals reference doc:
+# https://freenginx.org/en/docs/control.html 
+#
+[Unit]
+Description=A high performance web server and a reverse proxy server
+Documentation=man:freenginx(8)
+After=network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/run/freenginx.pid
+ExecStartPre=/usr/sbin/freenginx -t -q -g 'daemon on; master_process on;'
+ExecStartPost=/bin/sleep 0.1
+ExecStart=/usr/sbin/freenginx -g 'daemon on; master_process on;'
+ExecReload=/usr/sbin/freenginx -g 'daemon on; master_process on;' -s reload
+ExecStop=-/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/freenginx.pid
+TimeoutStopSec=5
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target

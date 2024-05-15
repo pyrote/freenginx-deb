@@ -1,0 +1,30 @@
+freenginx (1.25.5-1pyrote1~rc1) unstable; urgency=medium
+
+  * New upstream version 1.25.5
+
+  * Change: MIME type for the "bmp" extension has been changed to
+    "image/bmp", for the "rar" extension to "application/vnd.rar", and
+    the "deb" and "udeb" extensions now use the
+    "application/vnd.debian.binary-package" MIME type.
+    Thanks to Yuriy Izorkin.
+
+  * Change: the "client_max_body_size" directive is now used to limit
+    total size of ignored chunk extensions and trailer headers when
+    reading a request body using chunked transfer encoding.
+    Thanks to Bartek Nowotarski.
+
+  * Change: now at most one empty line is allowed before a request.
+
+  * Feature: logging to syslog errors are now reported at most once per
+    second.
+
+  * Feature: the "max_commands" directive in the mail proxy module.
+
+  * Bugfix: incorrect server name might be returned in responses when
+    using the "server_tokens off" directive.
+    Thanks to Tatsuya Kaneko and Antanas Patašius.
+
+  * Bugfix: when reading a request body from a fast connection reading
+    for a long time was possible. 
+
+ -- Pyrote <pyrote@guungle.com>  Mon, 08 Apr 2024 14:23:46 +0000

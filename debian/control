@@ -1,0 +1,63 @@
+Source: freenginx
+Section: httpd
+Priority: optional
+Maintainer: Pyrote <pyrote@guungle.com>
+Build-Depends: debhelper-compat (= 13), autotools-dev
+Standards-Version: 4.6.0
+Homepage: https://freenginx.org
+Vcs-Browser: http://freenginx.org/hg/nginx
+Rules-Requires-Root: no
+
+Package: freenginx
+Architecture: any
+Depends: ${shlibs:Depends},
+	 ${misc:Depends},
+	 iproute2,
+	 freenginx-common (= ${source:Version})
+Provides: httpd, httpd-cgi
+Description: small, powerful, scalable web/proxy server
+ freenginx is an effort to preserve free and open development of nginx [engine x],
+ an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP
+ proxy server, originally written by Igor Sysoev.
+
+Package: freenginx-common
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends},
+         freenginx (>= ${source:Version}),
+         freenginx (<< ${source:Version}.1~),
+Suggests: fcgiwrap, freenginx-doc, ssl-cert
+Description: small, powerful, scalable web/proxy server - common files
+ freenginx is an effort to preserve free and open development of nginx [engine x],
+ an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP
+ proxy server, originally written by Igor Sysoev.
+ .
+ This package contains base configuration files used by all versions of
+ freenginx.
+
+Package: freenginx-extra-modules
+Architecture: any 
+Multi-Arch: foreign
+Depends: ${shlibs:Depends},
+	 ${misc:Depends},
+         freenginx-common (>= ${source:Version}),
+         freenginx-common (<< ${source:Version}.1~),
+Suggests: freenginx 
+Description: Optional modules for freenginx
+ OPTIONAL HTTP MODULES: GeoIP, Image Filter, XSLT, Perl.
+ .
+ OPTIONAL MAIL MODULES: Mail Core, Auth HTTP, Proxy, SSL, IMAP, POP3, SMTP.
+ .
+ OPTIONAL STREAM MODULES: Stream Core, GeoIP
+
+Package: freenginx-doc
+Architecture: all
+Multi-Arch: foreign
+Section: doc
+Depends: ${misc:Depends}
+Description: small, powerful, scalable web/proxy server - documentation
+ freenginx is an effort to preserve free and open development of nginx [engine x],
+ an HTTP and reverse proxy server, a mail proxy server, and a generic TCP/UDP
+ proxy server, originally written by Igor Sysoev.
+ .
+ This package provides extra documentation to help unleash the power of freenginx.

@@ -1,0 +1,12 @@
+freenginx for Debian
+-------------------
+
+The nginx binary and all path names were renamed to freenginx so this package can be
+installed along side nginx for A/B testing.
+
+The optional modules are all in the freenginx-extra-modules package for now.
+This is different than the Debian nginx package that creates packages for individual
+modules. When I have time to figure out how the dh_nginx debhelper operates, packaging 
+individual modules may happen.
+
+ -- Pyrote <pyrote@guungle.com>  Mon, 08 Apr 2024 14:23:46 +0000

@@ -1,0 +1,14 @@
+[FreeNginx HTTP]
+title=Web Server (FreeNginx, HTTP)
+description=Small, but very powerful and efficient web server
+ports=80/tcp
+
+[FreeNginx HTTPS]
+title=Web Server (FreeNginx, HTTPS)
+description=Small, but very powerful and efficient web server
+ports=443/tcp
+
+[FreeNginx Full]
+title=Web Server (FreeNginx, HTTP + HTTPS)
+description=Small, but very powerful and efficient web server
+ports=80,443/tcp

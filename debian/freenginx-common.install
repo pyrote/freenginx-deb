@@ -1,0 +1,4 @@
+contrib/vim/* usr/share/vim/addons
+debian/conf/* etc/freenginx
+debian/ufw/freenginx etc/ufw/applications.d
+html/index.html usr/share/freenginx/html/
